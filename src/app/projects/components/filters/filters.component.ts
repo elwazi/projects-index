@@ -8,42 +8,28 @@ import { ProjectsService } from '../../services/projects.service';
 })
 export class FiltersComponent implements OnInit {
   @Input()
-  organs: string[];
+  projectName: string[];
 
   @Input()
-  technologies: string[];
+  country: string[];
 
   @Output()
-  selectedOrgan = new EventEmitter<string>();
+  selectedProjectName = new EventEmitter<string>();
 
   @Output()
-  selectedTechnology = new EventEmitter<string>();
+  selectedCountry = new EventEmitter<string>();
 
-  @Output()
-  selectedDataLocation = new EventEmitter<string>();
-
-  @Output()
-  valueSearched = new EventEmitter<string>();
-
-  dataLocations = Object.values(ProjectsService.allowedLocations);
+  countries = ['Ghana', 'Kenya', 'South Africa'];
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onOrganChange($event) {
-    this.selectedOrgan.emit($event.target.value);
+  onProjectNameChange($event) {
+    this.selectedProjectName.emit($event.target.value);
   }
 
-  onTechnologyChange($event) {
-    this.selectedTechnology.emit($event.target.value);
-  }
-
-  onDataLocationChange($event) {
-    this.selectedDataLocation.emit($event.target.value);
-  }
-
-  triggerSearch($event) {
-    this.valueSearched.emit($event.target.value);
+  onCountryChange($event) {
+    this.selectedCountry.emit($event.target.value);
   }
 }

@@ -1,0 +1,15 @@
+Project,Country(ies),Demographic,Surveillance,Clinical / Phenotype,Environmental / Exposure,Climate Data,Genetic / Genomic (Human),Genetic / Genomic (Pathogen / Infectious),Image Data,Specify image Types,Other Types,Specify Other Types
+Example,South Africa; Namibia,Yes,No,Yes,Yes,No,No,No,Yes,CT-Scans,No,NA
+CAMRA,,,,,,,,,,,,
+DS-CHANGE,Ghana,Yes,Yes,Yes,,No,Yes,Yes,Yes,N/A,N/A,N/A
+HE2AT,sub-Saharan Africa,Yes,Yes,Yes,Yes,Yes,No,No,No,N/A,Geospatial data,"Vectors and attributes, Raster and satellite imagery, Census data"
+D-SINE,"sub-Saharan Africa, Cameroon",Yes,Yes,Yes,No ,No,No,No,No,NA,Context of injury,
+MADIVA,"South Africa,Kenya",Yes,Yes,Yes,No,No,Yes,No,No,No,No,NA
+MakDARTA,,,,,,,,,,,,
+MUDSReH,"Uganda, Ghana, Kenya",Yes,Yes,Yes,Yes,No,No,No,Yes,Yes,Geospatial Data,NA
+NYU-Moy,,,,,,,,,,,,
+INFORM,"South Africa, Nigeria",yes,Yes,Yes,Yes,yes,Yes,Yes,No,,,
+UZIMA,Kenya,yes,Yes,Yes,Yes,No,No,No,No,No,Geospatial data,neurological data
+PUBGEM-Africa,"Ghana, South Africa",yes,no,no,no,no,yes,no,no,no,Ethics and qualitative data,
+AGP,"South Africa,Kenya",Yes,Yes,Yes,Yes,No,Yes,No,Yes,Radiology,,
+DST-HIRWA,,,,,,,,,,,,

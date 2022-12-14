@@ -15,14 +15,14 @@ export class NavComponent implements OnInit {
       url: '/about',
       text: 'About',
     },
-    {
-      url: '/summary',
-      text: 'Summary',
-    },
-    {
-      url: '/add-project',
-      text: 'Suggest a project',
-    },
+    // {
+    //   url: '/summary',
+    //   text: 'Summary',
+    // },
+    // {
+    //   url: '/add-project',
+    //   text: 'Suggest a project',
+    // },
   ];
 
   constructor() {}

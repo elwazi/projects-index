@@ -7,11 +7,11 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./contact-support.component.css'],
 })
 export class ContactSupportComponent implements OnInit {
-  wranglerEmail: string;
+  feedbackEmail: string;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.wranglerEmail = environment.wranglerEmail;
+    this.feedbackEmail = environment.feedbackEmail;
   }
 }

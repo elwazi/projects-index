@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./feedback.component.css'],
 })
 export class FeedbackComponent implements OnInit {
-  wranglerEmail: string = environment.wranglerEmail;
+  feedbackEmail: string = environment.feedbackEmail;
 
   constructor() {}
 

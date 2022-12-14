@@ -1,12 +1,11 @@
 <app-filters
   *ngIf="projects"
-  [organs]="projects.availableOrgans"
-  [technologies]="projects.availableTechnologies"
-  (selectedTechnology)="filterByTechnology($event)"
-  (selectedDataLocation)="filterByLocation($event)"
-  (selectedOrgan)="filterByOrgan($event)"
-  (valueSearched)="search($event)"
-></app-filters>
+  [projectName]="projects.availableProjects"
+  [country]="projects.availableCountries"
+  (selectedProjectName)="filterByProjectName($event)"
+  (selectedCountry)="filterByCountry($event)"
+>
+</app-filters>
 
 <svg class="vf-icon-sprite vf-icon-sprite--tables" display="none">
   <defs>
@@ -37,138 +36,94 @@
     </a>
   </div>
 
-  <table
-    class="vf-table vf-table--sortable vf-table--striped"
-    id="published-table"
-  >
-    <thead class="vf-table__header">
-      <tr class="vf-table__row">
-        <th class="vf-table__heading" scope="col">
-          <button
-            (click)="toggleDateSort()"
-            class="vf-button vf-button--sm vf-button--icon"
-          >
-            <span>Date added</span>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-              preserveAspectRatio="xMinYMin"
-            >
-              <use xlink:href="#vf-table-sortable"></use>
-            </svg>
-          </button>
-        </th>
-        <th class="vf-table__heading" scope="col">Project</th>
-        <th class="vf-table__heading" scope="col">Organ</th>
-        <th class="vf-table__heading" scope="col">Technology</th>
-        <th class="vf-table__heading" scope="col">Cell count</th>
-        <th class="vf-table__heading" scope="col">Data location</th>
-      </tr>
-    </thead>
+  <div class="table-horizontal-scroll-container">
+    <table
+      class="vf-table vf-table--sortable vf-table--striped"
+      id="published-table"
+    >
+      <thead class="vf-table__header">
+        <tr class="vf-table__row">
+          <!--        <th class="vf-table__heading" scope="col">-->
+          <!--          <button (click)="toggleDateSort()" class="vf-button vf-button&#45;&#45;sm vf-button&#45;&#45;icon">-->
+          <!--            <span>Date added</span>-->
+          <!--            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"-->
+          <!--                 version="1.1" preserveAspectRatio="xMinYMin">-->
+          <!--              <use xlink:href="#vf-table-sortable"></use>-->
+          <!--            </svg>-->
+          <!--          </button>-->
+          <!--        </th>-->
+          <th class="vf-table__heading" scope="col">Project</th>
+          <th class="vf-table__heading" scope="col">Countries</th>
+          <th class="vf-table__heading" scope="col">Demographic</th>
+          <th class="vf-table__heading" scope="col">Surveillance</th>
+          <th class="vf-table__heading" scope="col">Clinical/ Phenotype</th>
+          <th class="vf-table__heading" scope="col">Environmental/ Exposure</th>
+          <th class="vf-table__heading" scope="col">Climate Data</th>
+          <th class="vf-table__heading" scope="col">Genomic (Human)</th>
+          <th class="vf-table__heading" scope="col">
+            Genomic (Pathogen/ Infectious)
+          </th>
+          <th class="vf-table__heading" scope="col">Image Data</th>
+          <th class="vf-table__heading" scope="col">Other</th>
+        </tr>
+      </thead>
 
-    <tbody class="vf-table__body" *ngIf="projects">
-      <tr class="vf-table__row" *ngFor="let project of projects.items">
-        <td class="vf-table__cell">{{ project.date }}</td>
-        <td class="vf-table__cell">
-          <p style="margin-top: 0">{{ project.title }}</p>
-          <app-author-names
-            *ngIf="project.authors.length"
-            [authors]="project.authors"
-          ></app-author-names>
-          <span *ngIf="!project.publications.length">
-            pre-publication or citation missing
-          </span>
-          <list-of-links
-            [links]="mapPublicationLinks(project.publications)"
-          ></list-of-links>
-        </td>
-        <td class="vf-table__cell">
-          <ul class="comma-list">
-            <li *ngFor="let organ of project.organs">{{ organ }}</li>
-          </ul>
-          <p *ngIf="!project.organs.length">-</p>
-        </td>
-
-        <td class="vf-table__cell">
-          <ul class="comma-list">
-            <li *ngFor="let technology of project.technologies">
-              {{ technology }}
-            </li>
-            <p *ngIf="!project.technologies.length">-</p>
-          </ul>
-        </td>
-
-        <td class="vf-table__cell">
-          <span *ngIf="project.cellCount">{{
-            project.cellCount | number
-          }}</span>
-          <p *ngIf="!project.cellCount">-</p>
-        </td>
-
-        <td class="vf-table__cell">
-          <ul class="plain-list">
-            <li *ngIf="project.enaAccessions.length">
-              <list-of-links
-                name="ENA"
-                [links]="project.enaAccessions"
-              ></list-of-links>
-            </li>
-            <li *ngIf="project.arrayExpressAccessions.length">
-              <list-of-links
-                name="Arrayexpress"
-                [links]="project.arrayExpressAccessions"
-              ></list-of-links>
-            </li>
-            <li *ngIf="project.geoAccessions.length">
-              <list-of-links
-                name="GEO"
-                [links]="project.geoAccessions"
-              ></list-of-links>
-            </li>
-            <li *ngIf="project.egaAccessions.length">
-              <list-of-links
-                name="EGA"
-                [links]="project.egaAccessions"
-              ></list-of-links>
-            </li>
-            <li *ngIf="project.dbgapAccessions.length">
-              <list-of-links
-                name="dbGaP"
-                [links]="project.dbgapAccessions"
-              ></list-of-links>
-            </li>
-            <li *ngIf="project.cellXGeneLinks.length">
-              <list-of-links
-                name="cellxgene"
-                [links]="project.cellXGeneLinks"
-              ></list-of-links>
-            </li>
-            <li *ngIf="project.sceaLinks.length">
-              <list-of-links
-                name="SCEA"
-                [links]="project.sceaLinks"
-              ></list-of-links>
-            </li>
-            <li *ngIf="project.ucscLinks.length">
-              <list-of-links
-                name="UCSC Cell Browser"
-                [links]="project.ucscLinks"
-              ></list-of-links>
-            </li>
-            <li *ngIf="project.dcpUrl">
-              <list-of-links
-                name="HCA"
-                [links]="[{ name: 'Data Portal', href: project.dcpUrl }]"
-              ></list-of-links>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody class="vf-table__body" *ngIf="projects">
+        <tr class="vf-table__row" *ngFor="let project of projects.items">
+          <!--        <td class="vf-table__cell">{{ project.last_updated }}</td>-->
+          <td class="vf-table__cell">
+            <!--          <a [href]="project.website">{{ project.cohort_name }}</a>-->
+            <p style="margin-top: 0">{{ project.cohort_name }}</p>
+            <!--          <app-author-names *ngIf="project.countries.length" [authors]="project.countries"></app-author-names>-->
+            <!--          <span *ngIf="!project.survey_administration.length">-->
+            <!--            survey_administration missing-->
+            <!--          </span>-->
+            <!--          <list-of-links-->
+            <!--            [links]="mapPublicationLinks(project.survey_administration)"-->
+            <!--          ></list-of-links>-->
+          </td>
+          <td class="vf-table__cell">
+            <ul class="comma-list">
+              <li *ngFor="let country of project.countries">{{ country }}</li>
+            </ul>
+            <p *ngIf="!project.countries.length">-</p>
+          </td>
+          <td class="vf-table__cell">
+            <span>{{ project.available_data_types.demographic }}</span>
+          </td>
+          <td class="vf-table__cell">
+            <span>{{ project.available_data_types.demographic }}</span>
+          </td>
+          <td class="vf-table__cell">
+            <span>{{ project.available_data_types.demographic }}</span>
+          </td>
+          <td class="vf-table__cell">
+            <span>{{ project.available_data_types.demographic }}</span>
+          </td>
+          <td class="vf-table__cell">
+            <span>{{ project.available_data_types.demographic }}</span>
+          </td>
+          <td class="vf-table__cell">
+            <span>{{ project.available_data_types.demographic }}</span>
+          </td>
+          <td class="vf-table__cell">
+            <span>{{ project.available_data_types.demographic }}</span>
+          </td>
+          <td class="vf-table__cell">
+            <span>{{ project.available_data_types.demographic }}</span>
+          </td>
+          <td class="vf-table__cell">
+            <ul class="comma-list">
+              <li *ngFor="let dataType of project.available_data_types.other">
+                {{ dataType }}
+              </li>
+            </ul>
+            <p *ngIf="!project.available_data_types.other.length">-</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <app-pagination
     (page)="changePage($event)"
@@ -181,13 +136,13 @@
   <p>Loading...</p>
 </ng-template>
 <p>
-  Have feedback or want to suggest a project for the HCA Project Catalogue?
+  Have feedback or want to suggest a project for the eLwazi Project Catalogue?
   <a
     class="vf-link"
     href="mailto:{{
-      wranglerEmail
-    }}?subject=Feedback about the HCA Project Catalogue"
+      feedbackEmail
+    }}?subject=Feedback about the eLwazi Project Catalogue"
     target="_blank"
-    >Email the data wrangling team</a
+    >Email eLwazi team</a
   >.
 </p>

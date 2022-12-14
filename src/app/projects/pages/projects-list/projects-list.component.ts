@@ -24,7 +24,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
   filteredProjects: Project[];
   organs: string[];
   technologies: string[];
-  wranglerEmail: string = environment.wranglerEmail;
+  feedbackEmail: string = environment.feedbackEmail;
 
   constructor(
     private projectService: ProjectsService,
@@ -32,9 +32,9 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     private headingService: HeadingService
   ) {
     this.headingService.setTitle(
-      'HCA Project Catalogue',
-      'A comprehensive list of cellular resolution datasets for the Human Cell Atlas.',
-      true
+      'eLwazi Project Catalogue',
+      'eLwazi Open Data Science Platform: Enabling data science applications for health in Africa.',
+      false
     );
     this.headingService.hideBreadcrumbs();
   }
@@ -57,43 +57,36 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  toggleDateSort(): void {
-    const currentValues = this.projectService.currentFilters;
-    this.projectService.setFilters({
-      ...currentValues,
-      recentFirst: !currentValues.recentFirst,
-    });
-  }
+  // toggleDateSort(): void {
+  //   const currentValues = this.projectService.currentFilters;
+  //   this.projectService.setFilters({
+  //     ...currentValues,
+  //     recentFirst: !currentValues.recentFirst,
+  //   });
+  // }
 
-  filterByTechnology($selectedTechnology: string = ''): void {
-    this.projectService.setFilters({
-      ...this.projectService.currentFilters,
-      technology: $selectedTechnology,
-    });
-  }
-
-  filterByOrgan($selectedOrgan: string = ''): void {
+  filterByProjectName($selectedProjectName: string = ''): void {
     this.projectService.setFilters({
       ...this.projectService.currentFilters,
-      organ: $selectedOrgan,
+      projectName: $selectedProjectName,
     });
   }
 
-  filterByLocation($selectedLocation: string = ''): void {
+  filterByCountry($selectedCountry: string = ''): void {
     this.projectService.setFilters({
       ...this.projectService.currentFilters,
-      location: $selectedLocation,
+      country: $selectedCountry,
     });
   }
 
-  search($search: string = ''): void {
-    this.projectService.setFilters({
-      ...this.projectService.currentFilters,
-      searchVal: $search,
-    });
-
-    this.analyticsService.pushSearchTerms($search, this.projects.items);
-  }
+  // search($search: string = ''): void {
+  //   this.projectService.setFilters({
+  //     ...this.projectService.currentFilters,
+  //     searchVal: $search,
+  //   });
+  //
+  //   this.analyticsService.pushSearchTerms($search, this.projects.items);
+  // }
 
   changePage(page: PaginationEvent) {
     this.projectService.changePage(page.currentPage);
@@ -101,30 +94,16 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
 
   saveSearchResultsAsTsv() {
     const columns = {
-      uuid: 'Unique Key',
-      date: 'Date added',
-      title: 'Project Title',
-      publications: 'Publications',
-      authors: 'Authors',
-      organs: 'Organs',
-      technologies: 'Technologies',
-      cellCount: 'Cell count',
-      enaAccessions: 'ENA',
-      arrayExpressAccessions: 'Arrayexpress',
-      geoAccessions: 'GEO',
-      egaAccessions: 'EGA',
-      dbgapAccessions: 'dbGaP',
-      cellXGeneLinks: 'cellxgene',
-      sceaLinks: 'Single Cell Expression Atlas',
-      ucscLinks: 'UCSC Cell Browser',
-      dcpUrl: 'HCA Data Portal URL',
+      cohort_name: 'Project',
+      countries: 'Countries',
+      demographic: 'Demographics',
     };
     const tsvString = ProjectsTsvService.asTsvString(
       this.filteredProjects,
       columns
     );
     const blob = new Blob([tsvString], { type: 'text/tab-separated-values' });
-    saveAs(blob, 'HcaCatalogueExport.tsv');
+    saveAs(blob, 'elwazi_catalogue_export.tsv');
   }
 
   mapPublicationLinks = (publications: Publication[]): Link[] => {

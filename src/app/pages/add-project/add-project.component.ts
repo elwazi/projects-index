@@ -9,7 +9,7 @@ import { AddProjectService } from './add-project.service';
   styleUrls: ['./add-project.component.css'],
 })
 export class AddProjectComponent {
-  wranglerEmail = environment.wranglerEmail;
+  feedbackEmail = environment.feedbackEmail;
   submitted = false;
   error = false;
 

@@ -1,59 +1,12 @@
-# HCA Project Catalogue
+# eLwazi Project Catalogue
 
-[Production](https://www.ebi.ac.uk/humancellatlas/project-catalogue)
-
-[Development](https://wwwdev.ebi.ac.uk/humancellatlas/project-catalogue)
+[Production](http://www.elwazicatalogue.ilifu.ac.za)
 
 ### Deployments
 
-All changed in `master` are automatically deployed to the dev environment. In order to deploy to the production environment, follow the below steps:
+- 154.114.10.189
 
-1. Make sure you have the [`git release`](https://github.com/rdgoite/hca-developer-tools/blob/master/gitconfig) command in your gitconfig.
-2. `git checkout master`
-3. `git log` -> check latest commit is the commit to be released
-4. `git release`
-
-The project catalogue is deployed to the `web-development` k8s cluster and the process is managed in the `ebiwd` namespace in [GitLab](http://gitlab.ebi.ac.uk/). If there are any problems with deployments, you can contact [www-dev@ebi.ac.uk](mailto:www-dev@ebi.ac.uk) and reference ticket `#473703`.
-
-## Dev notes
-
-### Overview of infrastructure
-
-```mermaid
-%%{init: {'theme':'base'}}%%
-graph RL
-
-    subgraph Deployments
-        push(push to master) --> gitlab
-
-        subgraph wp[web-prod infrastructure]
-            gitlab{{GitLab}}
-            gitlab -->|deploy|dev[Dev cluster]
-            gitlab -->|deploy - only for tagged commits| prod[Prod cluster]
-        end
-    end
-
-    subgraph Runtime
-        subgraph hca_prod[HCA Ingest infrastructure - prod]
-            core_prod[ingest-core] --> mongo_prod[(mongodb)]
-        end
-        
-        subgraph hca_staging[HCA Ingest infrastructure - staging]
-            core_staging[ingest-core] --> mongo_staging[(mongodb)]
-        end
-
-        subgraph pc[project catalogue frontend]
-            www-->|GET /projects/search/catalogue|core_prod
-            wwwdev-->|GET /projects/search/catalogue|core_staging
-        end
-
-        user{{User}}-->|GET|www
-        user-->|GET|wwwdev
-    end
-```
-
-### Updating of project catalogue in core to include latest projects
-At the moment, this is done via [this CRON job](https://github.com/ebi-ait/ingest-kube-deployment/tree/master/cron-jobs/update-project-catalogue). The job will update core with all of the latest information for projects in the catalogue so that they appear in the catalogue.
+## Dev notes (!check and remove below)
 
 #### Continuous Integration
 

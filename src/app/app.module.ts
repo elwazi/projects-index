@@ -14,6 +14,8 @@ import { VisualFrameworkModule } from './visual-framework/visual-framework.modul
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { SummaryModule } from './summary/summary.module';
+import { ElwaziHeaderComponent } from './elwazi-header/elwazi-header.component';
+import { ElwaziFooterComponent } from './elwazi-footer/elwazi-footer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { SummaryModule } from './summary/summary.module';
     FeedbackComponent,
     GlobalHeaderComponent,
     NavComponent,
+    ElwaziHeaderComponent,
+    ElwaziFooterComponent,
   ],
   imports: [
     BrowserModule,

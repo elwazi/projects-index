@@ -7,8 +7,9 @@ export const environment = {
   ingestApiUrl: 'http://localhost:8080',
   catalogueEndpoint: '/projects/search/catalogue?page=0&size=1000',
   suggestEndpoint: '/projects/suggestion',
-  wranglerEmail: 'wrangler-team@data.humancellatlas.org',
+  wranglerEmail: '',
   wranglerOntology: 'EFO:0009737',
+  feedbackEmail: 'isuru@ebi.ac.uk',
 };
 
 /*

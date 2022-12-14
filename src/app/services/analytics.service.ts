@@ -20,11 +20,11 @@ export class AnalyticsService {
       search_term: $search,
       search_projects_term_and_uuids: `term: ${$search}, results: ${projects
         .slice(0, LIMIT)
-        .map((dataPoint) => dataPoint.uuid)
+        .map((dataPoint) => dataPoint.cohort_name)
         .join(',')}`,
       search_projects_term_and_titles: `term: ${$search}, results: ${projects
         .slice(0, LIMIT)
-        .map((dataPoint) => dataPoint.title)
+        .map((dataPoint) => dataPoint.cohort_name)
         .join(',')}`,
     });
   }

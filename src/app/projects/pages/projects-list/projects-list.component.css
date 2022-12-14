@@ -27,10 +27,16 @@
   content: "";
 }
 
+.table-horizontal-scroll-container {
+  overflow-x: scroll;
+  /*white-space: nowrap;*/
+}
+
 #published-table {
-  table-layout: fixed;
+  /*table-layout: fixed;*/
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
+  /*overflow: hidden;*/
   min-width: 950px;
 }
 

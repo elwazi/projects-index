@@ -1,0 +1,146 @@
+[
+  {
+    "cohort_name": "DS-CHANGE",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": true,
+      "clinical": true,
+      "environmental": false,
+      "climate_data": false,
+      "genomic_human": true,
+      "genomic_pathogen": true,
+      "image_data": true,
+      "other": []
+    },
+    "countries": ["Ghana"]
+  },
+  {
+    "cohort_name": "HE2AT",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": true,
+      "clinical": true,
+      "environmental": true,
+      "climate_data": true,
+      "genomic_human": false,
+      "genomic_pathogen": false,
+      "image_data": false,
+      "other": ["Geospatial data"]
+    },
+    "countries": ["sub-Saharan Africa"]
+  },
+  {
+    "cohort_name": "D-SINE",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": true,
+      "clinical": true,
+      "environmental": false,
+      "climate_data": false,
+      "genomic_human": false,
+      "genomic_pathogen": false,
+      "image_data": false,
+      "other": ["Context of injury"]
+    },
+    "countries": ["sub-Saharan Africa", "Cameroon"]
+  },
+  {
+    "cohort_name": "MADIVA",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": true,
+      "clinical": true,
+      "environmental": false,
+      "climate_data": false,
+      "genomic_human": true,
+      "genomic_pathogen": false,
+      "image_data": false,
+      "other": []
+    },
+    "countries": ["Kenya", "South Africa"]
+  },
+  {
+    "cohort_name": "MUDSReH",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": true,
+      "clinical": true,
+      "environmental": true,
+      "climate_data": false,
+      "genomic_human": false,
+      "genomic_pathogen": false,
+      "image_data": true,
+      "other": ["Geospatial data"]
+    },
+    "countries": ["Ghana", "Kenya", "Uganda"]
+  },
+  {
+    "cohort_name": "INFORM",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": true,
+      "clinical": true,
+      "environmental": true,
+      "climate_data": true,
+      "genomic_human": true,
+      "genomic_pathogen": true,
+      "image_data": false,
+      "other": []
+    },
+    "countries": ["Nigeria", "South Africa"]
+  },
+  {
+    "cohort_name": "UZMA",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": true,
+      "clinical": true,
+      "environmental": true,
+      "climate_data": false,
+      "genomic_human": false,
+      "genomic_pathogen": false,
+      "image_data": false,
+      "other": ["Geospatial data"]
+    },
+    "countries": ["Kenya"]
+  },
+  {
+    "cohort_name": "PUBGEM-Africa",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": false,
+      "clinical": false,
+      "environmental": false,
+      "climate_data": false,
+      "genomic_human": true,
+      "genomic_pathogen": false,
+      "image_data": false,
+      "other": ["Ethics and qualitative data"]
+    },
+    "countries": ["Ghana", "South Africa"]
+  },
+  {
+    "cohort_name": "AGP",
+    "website": "https://elwazi.org/",
+    "available_data_types": {
+      "demographic": true,
+      "surveillance": true,
+      "clinical": true,
+      "environmental": true,
+      "climate_data": false,
+      "genomic_human": true,
+      "genomic_pathogen": false,
+      "image_data": true,
+      "other": []
+    },
+    "countries": ["Kenya", "South Africa"]
+  }
+]

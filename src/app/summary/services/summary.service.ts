@@ -25,7 +25,7 @@ export class SummaryService implements OnDestroy {
     this.groupProjectsByKey('technologies', this.projectsByTech);
     this.projectService
       .getAllProjects()
-      .pipe(map((projects) => projects.map((x) => x.cellCount)))
+      .pipe(map((projects) => projects.map((x) => x.current_enrollment)))
       .subscribe((projects) =>
         this.cellCount.next(projects.reduce((acc, val) => acc + val, 0))
       );

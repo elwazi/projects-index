@@ -11,10 +11,10 @@ export class AboutComponent {
   constructor(private headingService: HeadingService) {
     this.headingService.setTitle(
       'About the Catalogue',
-      'Aims, eligibility criteria and selection process'
+      'eLwazi, DS-I Africa and project catalogue'
     );
     this.headingService.setBreadcrumbs('About');
   }
 
-  wranglerEmail: string = environment.wranglerEmail;
+  feedbackEmail: string = environment.feedbackEmail;
 }
