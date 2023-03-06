@@ -19,7 +19,23 @@ export class FiltersComponent implements OnInit {
   @Output()
   selectedCountry = new EventEmitter<string>();
 
-  countries = ['Ghana', 'Kenya', 'South Africa'];
+  countries = [
+    'Cameroon',
+    'Ghana',
+    'Kenya',
+    'South Africa',
+    'sub-Saharan Africa',
+  ];
+  dataTypes = [
+    'Demographic',
+    'Surveillance',
+    'Clinical/ Phenotype',
+    'Environmental/ Exposure',
+    'Climate Data',
+    'Genomic (Human)',
+    'Genomic (Pathogen/ Infectious)',
+    'Image Data',
+  ];
 
   constructor() {}
 

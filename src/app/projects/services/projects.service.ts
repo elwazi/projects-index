@@ -158,6 +158,7 @@ export class ProjectsService implements OnDestroy {
       let project: Project = {
         cohort_name: obj.cohort_name,
         website: obj.website,
+        license: obj.license,
         pi_lead: obj.pi_lead,
         current_enrollment: obj.current_enrollment,
         target_enrollment: obj.target_enrollment,

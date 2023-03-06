@@ -32,7 +32,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     private headingService: HeadingService
   ) {
     this.headingService.setTitle(
-      'eLwazi Project Catalogue',
+      'eLwazi DS-I Africa Project Catalogue',
       'eLwazi Open Data Science Platform: Enabling data science applications for health in Africa.',
       false
     );

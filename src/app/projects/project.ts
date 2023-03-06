@@ -62,6 +62,7 @@ export interface PhysiologicalMeasurements {
 export interface Project {
   cohort_name: string;
   website: string;
+  license: string;
   pi_lead: string;
   current_enrollment: number;
   target_enrollment: number;

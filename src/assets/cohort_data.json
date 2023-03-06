@@ -2,6 +2,7 @@
   {
     "cohort_name": "DS-CHANGE",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": true,
@@ -18,6 +19,7 @@
   {
     "cohort_name": "HE2AT",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": true,
@@ -34,6 +36,7 @@
   {
     "cohort_name": "D-SINE",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": true,
@@ -50,6 +53,7 @@
   {
     "cohort_name": "MADIVA",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": true,
@@ -66,6 +70,7 @@
   {
     "cohort_name": "MUDSReH",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": true,
@@ -82,6 +87,7 @@
   {
     "cohort_name": "INFORM",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": true,
@@ -96,8 +102,9 @@
     "countries": ["Nigeria", "South Africa"]
   },
   {
-    "cohort_name": "UZMA",
+    "cohort_name": "UZIMA-DS",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": true,
@@ -114,6 +121,7 @@
   {
     "cohort_name": "PUBGEM-Africa",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": false,
@@ -130,6 +138,7 @@
   {
     "cohort_name": "AGP",
     "website": "https://elwazi.org/",
+    "license": " - ",
     "available_data_types": {
       "demographic": true,
       "surveillance": true,
