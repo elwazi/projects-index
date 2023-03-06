@@ -5,7 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class HeadingService {
-  private title = new BehaviorSubject<string>('eLwazi Project Catalogue');
+  private title = new BehaviorSubject<string>(
+    'eLwazi DS-I Africa Project Catalogue'
+  );
   title$ = this.title.asObservable();
   private subtitle = new BehaviorSubject<string>('');
   subtitle$ = this.subtitle.asObservable();

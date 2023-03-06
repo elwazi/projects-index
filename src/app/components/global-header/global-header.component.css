@@ -1,6 +1,34 @@
 .elwazi-top-banner {
-  /*background: #3355aa;*/
   background-image: url(~src/assets/eLwazi_1st_banner.svg),
     linear-gradient(270deg, #c13f27 0%, #fcc300 100%);
-  /*background-image: url(https://elwazi.org/sites/default/files/inline-images/eLwazi_1st_banner.svg),linear-gradient(270deg,#C13F27 0%,#FCC300 100%);*/
+}
+
+.elwazi-banner-content {
+  max-width: 662px;
+  background: #fdfdfded;
+}
+
+.logo-wrapper {
+  float: left;
+  width: 280px;
+  margin-top: 22px;
+}
+
+.banner-logo {
+  width: 130px;
+  float: left;
+  margin-right: 10px;
+}
+
+.elwazi-heading {
+  color: #4e4e4e;
+}
+
+.elwazi-subheading {
+  color: #505050;
+  font-size: 19px;
+}
+
+.mt-5 {
+  margin-top: 5px;
 }

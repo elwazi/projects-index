@@ -1,11 +1,26 @@
 <section class="vf-hero | vf-u-fullbleed elwazi-top-banner">
-  <div class="vf-hero__content | vf-box | vf-stack vf-stack--400">
-    <h2 class="vf-hero__heading">
+  <div
+    class="vf-hero__content | vf-box | vf-stack vf-stack--400 elwazi-banner-content"
+  >
+    <div class="logo-wrapper">
+      <img
+        src="assets/logo-eLwazi.png"
+        alt="eLwazi Logo"
+        class="banner-logo mt-5"
+      />
+      <img
+        src="assets/logo-DSIAfrica.png"
+        alt="DS-I Africa Logo"
+        class="banner-logo"
+      />
+    </div>
+    <h2 class="vf-hero__heading elwazi-heading">
       <a class="vf-hero__heading_link" routerLink="/">
-        {{ headerTitle$ | async }}
+        Project Catalogue
+        <!--        {{ headerTitle$ | async }}-->
       </a>
     </h2>
-    <p class="vf-hero__subheading">
+    <p class="vf-hero__subheading elwazi-subheading">
       {{ headerText$ | async }}
       <a
         *ngIf="showAboutLink$ | async"

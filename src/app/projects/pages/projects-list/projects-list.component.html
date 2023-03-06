@@ -6,6 +6,7 @@
   [country]="projects.availableCountries"
   (selectedProjectName)="filterByProjectName($event)"
   (selectedCountry)="filterByCountry($event)"
+  (selectedDataType)="filterByDataType($event)"
 >
 </app-filters>
 
@@ -181,13 +182,18 @@
 <ng-template #loading>
   <p>Loading...</p>
 </ng-template>
+<div class="updateDate">
+  Last updated on
+  {{ lastUpdated ? lastUpdated.date.toDateString() : "loading" }}
+</div>
 <p>
-  Have feedback or want to suggest a project for the eLwazi Project Catalogue?
+  Have feedback or want to suggest a project for the eLwazi DS-I Africa Project
+  Catalogue?
   <a
     class="vf-link"
     href="mailto:{{
       feedbackEmail
-    }}?subject=Feedback about the eLwazi Project Catalogue"
+    }}?subject=Feedback about the eLwazi DS-I Africa Project Catalogue"
     target="_blank"
     >Email eLwazi team</a
   >.

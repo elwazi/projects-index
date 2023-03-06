@@ -1,4 +1,4 @@
-# eLwazi Project Catalogue
+# eLwazi DS-I Africa Project Catalogue
 
 [Production](http://www.elwazicatalogue.ilifu.ac.za)
 

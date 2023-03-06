@@ -15,41 +15,17 @@ export class ProjectsTsvService {
 
   private static projectAsTsvString(project: Project, keys) {
     return keys
-      .map((key) => ProjectsTsvService.flattenProjectField(key, project[key]))
+      .map((key) => ProjectsTsvService.flattenProjectField(key, project))
       .join('\t');
   }
 
-  private static flattenProjectField(key: string, value) {
-    if (!value && value !== 0) {
-      return '';
+  private static flattenProjectField(key: string, project: Project) {
+    let keyParts = key.split('.');
+    let projectChild = project;
+    for (let key of keyParts) {
+      projectChild = projectChild[key];
     }
-    if (key === 'authors') {
-      return value.map((author) => author.formattedName).join(', ');
-    }
-    if (key === 'publications') {
-      return value
-        .map(
-          (publication) => `[${publication.journalTitle}](${publication.url})`
-        )
-        .join(', ');
-    }
-    if (
-      [
-        'enaAccessions',
-        'arrayExpressAccessions',
-        'geoAccessions',
-        'egaAccessions',
-        'dbgapAccessions',
-        'cellXGeneLinks',
-        'sceaLinks',
-        'ucscLinks',
-      ].includes(key)
-    ) {
-      return value.map((link) => link.name).join(', ');
-    }
-    if (Array.isArray(value)) {
-      return value.join(', ');
-    }
-    return value;
+
+    return projectChild;
   }
 }

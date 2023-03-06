@@ -24,4 +24,15 @@
       {{ country }}
     </option>
   </select>
+
+  <select
+    name="dataTypeFilter"
+    class="vf-form__select"
+    (change)="onDataTypeChange($event)"
+  >
+    <option selected value="">Available Data Types</option>
+    <option *ngFor="let dataType of dataTypes" value="{{ dataType }}">
+      {{ dataType }}
+    </option>
+  </select>
 </div>

@@ -32,6 +32,14 @@
   /*white-space: nowrap;*/
 }
 
+.updateDate {
+  margin-top: 7px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  text-align: right;
+  width: 100%;
+}
+
 #published-table {
   /*table-layout: fixed;*/
   width: 100%;

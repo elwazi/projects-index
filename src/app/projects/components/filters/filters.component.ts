@@ -13,11 +13,17 @@ export class FiltersComponent implements OnInit {
   @Input()
   country: string[];
 
+  @Input()
+  dataType: string[];
+
   @Output()
   selectedProjectName = new EventEmitter<string>();
 
   @Output()
   selectedCountry = new EventEmitter<string>();
+
+  @Output()
+  selectedDataType = new EventEmitter<string>();
 
   countries = [
     'Cameroon',
@@ -47,5 +53,9 @@ export class FiltersComponent implements OnInit {
 
   onCountryChange($event) {
     this.selectedCountry.emit($event.target.value);
+  }
+
+  onDataTypeChange($event) {
+    this.selectedDataType.emit($event.target.value);
   }
 }

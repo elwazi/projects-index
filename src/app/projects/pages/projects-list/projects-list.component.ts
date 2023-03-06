@@ -9,6 +9,7 @@ import { HeadingService } from '../../../services/heading.service';
 import { PaginationEvent } from '../../components/pagination/pagination.component';
 import { ProjectsTsvService } from '../../services/projects-tsv.service';
 import { saveAs } from 'file-saver';
+import { LastUpdated } from '../../lastUpdated';
 
 @Component({
   selector: 'app-projects-list',
@@ -26,6 +27,8 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
   technologies: string[];
   feedbackEmail: string = environment.feedbackEmail;
 
+  lastUpdated: LastUpdated;
+
   constructor(
     private projectService: ProjectsService,
     private analyticsService: AnalyticsService,
@@ -33,10 +36,16 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
   ) {
     this.headingService.setTitle(
       'eLwazi DS-I Africa Project Catalogue',
-      'eLwazi Open Data Science Platform: Enabling data science applications for health in Africa.',
+      'eLwazi Open Data Science Platform: Enabling data science applications for health in Africa',
       false
     );
     this.headingService.hideBreadcrumbs();
+    // this.lastUpdated = {'date': '10/03/2023', 'description': 'Add suggestions from the community'};
+    projectService
+      .getProjectsUpdateHistory()
+      .subscribe(
+        (updateHistory: LastUpdated[]) => (this.lastUpdated = updateHistory[0])
+      );
   }
 
   ngOnInit(): void {
@@ -79,6 +88,13 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     });
   }
 
+  filterByDataType($selectedDataType: string = ''): void {
+    this.projectService.setFilters({
+      ...this.projectService.currentFilters,
+      dataType: $selectedDataType,
+    });
+  }
+
   // search($search: string = ''): void {
   //   this.projectService.setFilters({
   //     ...this.projectService.currentFilters,
@@ -96,14 +112,23 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     const columns = {
       cohort_name: 'Project',
       countries: 'Countries',
-      demographic: 'Demographics',
+      'available_data_types.demographic': 'Demographic',
+      'available_data_types.surveillance': 'Surveillance',
+      'available_data_types.clinical': 'Clinical/ Phenotype',
+      'available_data_types.environmental': 'Environmental/ Exposure',
+      'available_data_types.climate_data': 'Climate Data',
+      'available_data_types.genomic_human': 'Genomic (Human)',
+      'available_data_types.genomic_pathogen': 'Genomic (Pathogen/ Infectious)',
+      'available_data_types.image_data': 'Image Data',
+      'available_data_types.other': 'Other Data Types',
+      license: 'License',
     };
     const tsvString = ProjectsTsvService.asTsvString(
       this.filteredProjects,
       columns
     );
     const blob = new Blob([tsvString], { type: 'text/tab-separated-values' });
-    saveAs(blob, 'elwazi_catalogue_export.tsv');
+    saveAs(blob, 'eLwazi_catalogue_export.tsv');
   }
 
   mapPublicationLinks = (publications: Publication[]): Link[] => {

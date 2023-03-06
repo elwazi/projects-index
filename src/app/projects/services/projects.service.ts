@@ -3,11 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Link, PaginatedProjects, Project } from '../project';
+import {
+  AvailableDataTypes,
+  Link,
+  PaginatedProjects,
+  Project,
+} from '../project';
+import { LastUpdated } from '../lastUpdated';
 
 interface Filters {
   projectName: string;
   country: string;
+  dataType: string;
 }
 
 @Injectable()
@@ -24,13 +31,30 @@ export class ProjectsService implements OnDestroy {
     UCSC: 'UCSC Cell Browser',
   } as const;
 
+  static allowedDataTypes = {
+    Demographic: 'demographic',
+    Surveillance: 'surveillance',
+    'Clinical/ Phenotype': 'phenotypic_clinical_data',
+    'Environmental/ Exposure': 'environmental',
+    'Climate Data': 'climate_data',
+    'Genomic (Human)': 'genomic_human',
+    'Genomic (Pathogen/ Infectious)': 'genomic_pathogen',
+    'Image Data': 'image_data',
+
+    biospecimens: 'biospecimens',
+    environmental_data: 'environmental_data',
+    genomic_data: 'genomic_data',
+    clinical: 'clinical',
+  } as const;
+
   private URL = `${environment.ingestApiUrl}${environment.catalogueEndpoint}`;
 
   private projectsPerPage = 20;
   private currentPage: BehaviorSubject<number>;
 
-  private availableCountries: string[];
   private availableProjects: string[];
+  private availableCountries: string[];
+  private availableDataTypes: string[];
 
   private filters: BehaviorSubject<Filters>;
   currentFilters: Filters;
@@ -45,6 +69,7 @@ export class ProjectsService implements OnDestroy {
     this.filters = new BehaviorSubject<Filters>({
       projectName: '',
       country: '',
+      dataType: '',
     });
     this.filters.subscribe((filters) => {
       this.currentFilters = filters;
@@ -56,6 +81,7 @@ export class ProjectsService implements OnDestroy {
     this.setFilters({
       projectName: '',
       country: '',
+      dataType: '',
     });
 
     this.retrieveProjects();
@@ -78,6 +104,21 @@ export class ProjectsService implements OnDestroy {
 
           this.availableCountries = [
             ...new Set(projects.map((project) => project.countries).flat()),
+          ].sort() as string[];
+
+          this.availableDataTypes = [
+            'biospecimens',
+            'environmental_data',
+            'genomic_data',
+            'phenotypic_clinical_data',
+            'demographic',
+            'surveillance',
+            'clinical',
+            'environmental',
+            'climate_data',
+            'genomic_human',
+            'genomic_pathogen',
+            'image_data',
           ].sort() as string[];
         }),
         switchMap((projects: Project[]) =>
@@ -139,6 +180,21 @@ export class ProjectsService implements OnDestroy {
     );
   }
 
+  public getProjectsUpdateHistory(): Observable<LastUpdated[]> {
+    const updateHistoryUrl = './assets/update_history.json';
+    // return this.http.get<any>(this.URL).pipe(
+    return this.http.get<LastUpdated[]>(updateHistoryUrl).pipe(
+      map((response) => {
+        if (response) {
+          return response
+            .map(this.formatUpdateHistory)
+            .filter((lastUpdated) => !!lastUpdated)
+            .sort((a, b) => <any>b.date - <any>a.date);
+        }
+      })
+    );
+  }
+
   private filterProject(project, filters: Filters): boolean {
     if (
       filters.projectName &&
@@ -150,6 +206,13 @@ export class ProjectsService implements OnDestroy {
     if (filters.country && !project.countries.includes(filters.country)) {
       return false;
     }
+
+    const dataTypeFilter = ProjectsService.allowedDataTypes[filters.dataType];
+    if (filters.dataType && !project.available_data_types[dataTypeFilter]) {
+      console.log(dataTypeFilter);
+      return false;
+    }
+
     return true;
   }
 
@@ -173,6 +236,19 @@ export class ProjectsService implements OnDestroy {
         last_updated: '01/01/2022',
       };
       return project;
+    } catch (e) {
+      console.error(`Error in project ${obj.uuid.uuid}: ${e.message}`);
+      return null;
+    }
+  };
+
+  formatUpdateHistory = (obj: any): LastUpdated => {
+    try {
+      let lastUpdated: LastUpdated = {
+        date: new Date(obj.date),
+        description: obj.description,
+      };
+      return lastUpdated;
     } catch (e) {
       console.error(`Error in project ${obj.uuid.uuid}: ${e.message}`);
       return null;
